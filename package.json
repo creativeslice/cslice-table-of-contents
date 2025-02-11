@@ -1,0 +1,16 @@
+{
+	"name": "cslice-table-of-contents",
+	"description": "Table of Contents block plugin by Creative Slice",
+	"author": "Creative Slice",
+	"license": "GPL-2.0-or-later",
+	"scripts": {
+		"start": "wp-scripts start --webpack-copy-php",
+		"build": "wp-scripts build --webpack-copy-php",
+		"format": "wp-scripts format",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.10.0"
+	}
+}

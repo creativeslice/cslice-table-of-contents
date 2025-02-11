@@ -1,0 +1,65 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cslice/table-of-contents",
+	"version": "2025.02.10",
+	"title": "Table of Contents",
+	"description": "Dynamically show titles linking to headings on this page.",
+	"category": "widgets",
+	"icon": "list-view",
+	"textdomain": "cslice-table-of-contents",
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"typography": {
+			"fontSize": true,
+			"fontWeight": true,
+			"__experimentalFontWeight": true
+		},
+		"color": {
+			"text": true,
+			"background": true
+		},
+		"shadow": true,
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		}
+	},
+	"styles": [
+		{
+			"name": "default",
+			"label": "Default",
+			"isDefault": true
+		},
+		{
+			"name": "horizontal",
+			"label": "Horizontal"
+		}
+	],
+	"attributes": {
+		"headingLevels": {
+			"type": "object",
+			"default": {
+				"h1": false,
+				"h2": true,
+				"h3": false,
+				"h4": false
+			}
+		},
+		"headings": {
+			"type": "array",
+			"default": []
+		}
+	},
+	"usesContext": [ "postId" ],
+	"editorScript": "file:./index.js",
+	"viewScript": "file:./view.js",
+	"style": "file:./style-index.css"
+}

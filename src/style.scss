@@ -1,0 +1,122 @@
+/**
+ * Table of Contents Block Styles
+ */
+
+// Scroll offset for headings with TOC links
+//h2[id], h3[id]
+:target {
+	scroll-margin-top: 100px;
+	//scroll-margin-block: 2rem;
+    animation: highlight 1s ease;
+}
+
+@keyframes highlight {
+    from { background: var(--wp--preset--color--primary-3); }
+    to { background: transparent; }
+}
+
+// Sticky TOC block
+.wp-block-cslice-table-of-contents {
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		li {
+			margin: 0;
+
+			a {
+				text-decoration: none;
+                opacity: 0.75;
+                display: block;
+                //padding-left: 0.75em;
+
+				&:hover,
+                &.active {
+                    opacity: 1;
+                }
+
+				&.active {
+					text-decoration: underline;
+					//box-shadow: -3px 0 0 color-mix(in srgb, currentColor 20%, transparent);
+				}
+			}
+
+			&.level-1 { padding-left: 0; }
+			&.level-2 { padding-left: 1em; }
+			&.level-3 { padding-left: 2em; }
+			&.level-4 { padding-left: 3em; }
+		}
+	}
+
+	// floating-navigation from shopify
+	&.is-style-horizontal {
+		overflow-x: auto; // scroll
+		scroll-behavior: smooth;
+		//scroll-snap-type: x mandatory; // breaks manual scroll
+		scroll-snap-type: x proximity; // breaks active position
+		scrollbar-width: none;
+		-webkit-overflow-scrolling: touch;
+		-ms-overflow-style: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		// Glass blur effect if using white (base) background
+		&.has-base-background-color {
+			background: rgba(255, 255, 255, 0.8) !important;
+			backdrop-filter: blur(8px);
+			box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+		}
+
+		ul {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			width: max-content;
+			gap: 1.5em;
+			margin: 0 auto;
+
+			li {
+				flex: 0 0 auto;
+                padding-left: 0 !important; // override level padding
+
+				a {
+					max-width: 15em; // limit length...
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					padding: 0;
+
+					&.active {
+						text-decoration: none;
+						box-shadow: 0 2px 0 color-mix(in srgb, currentColor 50%, transparent);
+					}
+				}
+			}
+		}
+
+		/*
+		// Show scrollbar on desktop/non-touch devices
+		@media (hover: hover) {
+			scrollbar-width: thin;
+			-ms-overflow-style: auto;
+			&::-webkit-scrollbar {
+				display: block;
+				height: 8px;
+			}
+			&::-webkit-scrollbar-track {
+				background: transparent;
+			}
+			&::-webkit-scrollbar-thumb {
+				background: rgba(0, 0, 0, 0.2);
+				border-radius: 4px;
+				&:hover {
+					background: rgba(0, 0, 0, 0.3);
+				}
+			}
+		}*/
+	}
+}
