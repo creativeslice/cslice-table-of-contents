@@ -17,14 +17,23 @@ const Edit = ( { attributes, setAttributes } ) => {
 	// Recursively get all heading blocks
 	const getHeadingBlocks = ( blocks ) => {
 		return blocks.reduce( ( headings, block ) => {
+			if ( block.name === 'core/query' ) {
+				return headings;
+			}
+
 			if (
 				block.name === 'core/heading' &&
 				headingLevels[ `h${ block.attributes.level }` ]
 			) {
+				// Create a temporary element to decode HTML entities
+				const decoder = document.createElement( 'div' );
+				decoder.innerHTML = block.attributes.content;
+				const decodedContent = decoder.textContent;
+
 				headings.push( {
-					content: block.attributes.content.replace( /<[^>]*>/g, '' ),
+					content: decodedContent,
 					level: block.attributes.level,
-					anchor: block.attributes.content
+					anchor: decodedContent
 						.toLowerCase()
 						.replace( /<[^>]*>/g, '' )
 						.replace( /[^a-z0-9\s-]+/g, '' ) // match WP sanitize_title()
@@ -32,9 +41,11 @@ const Edit = ( { attributes, setAttributes } ) => {
 						.replace( /^-+|-+$/g, '' ),
 				} );
 			}
+
 			if ( block.innerBlocks?.length ) {
 				headings.push( ...getHeadingBlocks( block.innerBlocks ) );
 			}
+
 			return headings;
 		}, [] );
 	};
