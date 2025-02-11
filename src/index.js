@@ -14,17 +14,14 @@ const Edit = ( { attributes, setAttributes } ) => {
 	const { headingLevels, headings } = attributes;
 	const previousHeadings = useRef( headings );
 
-	// Get headings from the content
-	const headingBlocks = useSelect(
-		( select ) => {
-			const { getBlocks } = select( blockEditorStore );
-			return getBlocks()
-				.filter(
-					( block ) =>
-						block.name === 'core/heading' &&
-						headingLevels[ `h${ block.attributes.level }` ]
-				)
-				.map( ( block ) => ( {
+	// Recursively get all heading blocks
+	const getHeadingBlocks = ( blocks ) => {
+		return blocks.reduce( ( headings, block ) => {
+			if (
+				block.name === 'core/heading' &&
+				headingLevels[ `h${ block.attributes.level }` ]
+			) {
+				headings.push( {
 					content: block.attributes.content.replace( /<[^>]*>/g, '' ),
 					level: block.attributes.level,
 					anchor: block.attributes.content
@@ -33,7 +30,20 @@ const Edit = ( { attributes, setAttributes } ) => {
 						.replace( /[^a-z0-9\s-]+/g, '' ) // match WP sanitize_title()
 						.replace( /\s+/g, '-' )
 						.replace( /^-+|-+$/g, '' ),
-				} ) );
+				} );
+			}
+			if ( block.innerBlocks?.length ) {
+				headings.push( ...getHeadingBlocks( block.innerBlocks ) );
+			}
+			return headings;
+		}, [] );
+	};
+
+	// Get headings from the content
+	const headingBlocks = useSelect(
+		( select ) => {
+			const { getBlocks } = select( blockEditorStore );
+			return getHeadingBlocks( getBlocks() );
 		},
 		[ headingLevels ]
 	);

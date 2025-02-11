@@ -2,7 +2,6 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "cslice/table-of-contents",
-	"version": "2025.02.10",
 	"title": "Table of Contents",
 	"description": "Dynamically show titles linking to headings on this page.",
 	"category": "widgets",

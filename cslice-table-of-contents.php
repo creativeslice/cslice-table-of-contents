@@ -3,7 +3,7 @@
  * Plugin Name:         Creative Slice - Table of Contents Block
  * Description:         Block showing table of contents with dynamic links to headings on the page
  * Plugin URI:          https://github.com/creativeslice/cslice-table-of-contents
- * Version:             2025.02.10
+ * Version:             2025.02.11
  * Requires at least:   6.7
  * Tested up to:        6.7.1
  * Requires PHP:        8.0
