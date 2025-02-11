@@ -1,6 +1,30 @@
 # Table of Contents Block
 
-A WordPress block plugin by Creative Slice that adds a table of contents block.
+A WordPress block plugin by Creative Slice that adds a dynamic table of contents block, automatically generating navigation from page headings.
+
+## Features
+
+- Automatically generates navigation from page headings
+- Tracks scroll position and highlights active section
+- Two display styles:
+  - Default vertical list
+  - Horizontal scrolling navigation
+- Full block editor customization:
+  - Typography settings with font size and weight controls
+  - Background color with opacity support
+  - Border controls (color, width, style, radius)
+  - Box shadow
+  - Spacing (margin and padding)
+  - Wide and full width alignment
+- Blur effect for semi-transparent backgrounds if white background is used
+- No JavaScript overhead on pages without TOC
+- Clean, efficient vanilla JS scroll tracking
+
+## Requirements
+
+- WordPress 6.7 or later
+- PHP 8.0 or later
+- Node.js 20+ for development
 
 ## Development
 
@@ -19,15 +43,7 @@ npm start
 npm run build
 ```
 
-## Features
-
-- Automatically generates a table of contents from headings in your content
-- Configurable heading selectors (h2, h3, h4, etc.)
-- Choice between ordered and unordered lists
-- Clean, modern styling with customization options
-
-## Requirements
-
-- WordPress 6.1 or later
-- PHP 7.0 or later
-- Node.js for development
+4. Create plugin zip:
+```bash
+npm run plugin-zip
+```

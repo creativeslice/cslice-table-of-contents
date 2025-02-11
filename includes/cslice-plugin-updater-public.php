@@ -1,4 +1,4 @@
-<?php // cslice-gtranslate GitHub Plugin Updater 2024.12.03 - PUBLIC REPO
+<?php // Table of Contents GitHub Plugin Updater 2025.02.11 - PUBLIC REPO
 namespace CSlice\TableOfContents;
 
 class Plugin_Updater {
